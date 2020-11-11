@@ -69,6 +69,16 @@ namespace Bank.Config
 		/// </summary>
 		public string[] BanString { get; } = {"*", "#", "ТБ=01"};
 
+		/// <summary>
+		/// Сортировка и фильтрация возможна только по первым 4 столбцам (такое задание)
+		/// </summary>
+		public int SortRun { get; } = 4;
+
+		/// <summary>
+		/// Сортировка и фильтрация возможна только по первым 4 столбцам (такое задание)
+		/// </summary>
+		public char Separator { get; } = '|';
+
 		#endregion
 
 	}
