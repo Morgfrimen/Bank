@@ -22,14 +22,11 @@ namespace Bank
 			{
 				Window mainWindow = window ?? throw new ArgumentException(nameof(App));
 				ShowWindow(mainWindow);
-				var testConfig = Config.Config.Con;
 			}
 			catch (Exception ex)
 			{
 				Logger.Logger.Error(ex, nameof(App), "Constructor");
 			}
-			Logger.Logger.InformationSuccesMethod(nameof(App),"Constructor");
-
 		}
 
 		#endregion
