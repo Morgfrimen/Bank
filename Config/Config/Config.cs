@@ -52,8 +52,6 @@ namespace Config.Config
 		{
 			try
 			{
-				Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-
 				if (!Directory.Exists($@"{Environment.CurrentDirectory}\{nameof(Config)}"))
 					Directory.CreateDirectory($@"{Environment.CurrentDirectory}\{nameof(Config)}");
 

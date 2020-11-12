@@ -6,14 +6,14 @@
 
 		#region Constructors
 
-		public OneRowTxt(long x1A, long x1B, long x1V, long x1G, long x2, long x3,
-			long x4, long x5, long x6, long x7, long x8, long x9,
-			long x10, long x11, long x12, long x13, long x14)
+		public OneRowTxt(double xa1, double xb1, double xv1, double xg1, double x2, double x3,
+			double x4, double x5, double x6, double x7, double x8, double x9,
+			double x10, double x11, double x12, double x13, double x14)
 		{
-			X1A = x1A;
-			X1B = x1B;
-			X1V = x1V;
-			X1G = x1G;
+			XA1 = xa1;
+			XB1 = xb1;
+			XV1 = xv1;
+			XG1 = xg1;
 			X2 = x2;
 			X3 = x3;
 			X4 = x4;
@@ -29,44 +29,45 @@
 			X14 = x14;
 		}
 
+		public OneRowTxt() { }
+
 		#endregion
 
 		#region Properties
 
-		public long X10 { get; }
-		public long X11 { get; }
-		public long X12 { get; }
-		public long X13 { get; }
-		public long X14 { get; }
-
 		/// <summary>
 		///     1a
 		/// </summary>
-		public long X1A { get; }
+		public double XA1 { get; set; }
 
 		/// <summary>
 		///     1б
 		/// </summary>
-		public long X1B { get; }
+		public double XB1 { get; set; }
 
 		/// <summary>
 		///     1г
 		/// </summary>
-		public long X1G { get; }
+		public double XG1 { get; set; }
 
 		/// <summary>
 		///     1в
 		/// </summary>
-		public long X1V { get; }
+		public double XV1 { get; set; }
 
-		public long X2 { get; }
-		public long X3 { get; }
-		public long X4 { get; }
-		public long X5 { get; }
-		public long X6 { get; }
-		public long X7 { get; }
-		public long X8 { get; }
-		public long X9 { get; }
+		public double X2 { get; set; }
+		public double X3 { get; set; }
+		public double X4 { get; set; }
+		public double X5 { get; set; }
+		public double X6 { get; set; }
+		public double X7 { get; set; }
+		public double X8 { get; set; }
+		public double X9 { get; set; }
+		public double X10 { get; set; }
+		public double X11 { get; set; }
+		public double X12 { get; set; }
+		public double X13 { get; set; }
+		public double X14 { get; set; }
 
 		#endregion
 

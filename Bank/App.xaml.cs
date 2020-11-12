@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using System.Windows;
 
 using Bank.View;
@@ -21,6 +22,7 @@ namespace Bank
 
 		private App([NotNull] Window window)
 		{
+			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); 
 			try
 			{
 				Window mainWindow = window ?? throw new ArgumentException(nameof(App));
