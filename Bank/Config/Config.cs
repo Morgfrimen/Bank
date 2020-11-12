@@ -79,6 +79,8 @@ namespace Bank.Config
 		/// </summary>
 		public char Separator { get; } = '|';
 
+		//TODO: xml and xlms
+
 		#endregion
 
 	}
