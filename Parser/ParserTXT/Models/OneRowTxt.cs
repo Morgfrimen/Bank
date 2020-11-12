@@ -29,45 +29,46 @@
 			X14 = x14;
 		}
 
-		public OneRowTxt() { }
+		internal OneRowTxt() { }
 
 		#endregion
 
+		//Порядок должен быть строгим, так как в паресе используется рефлексия
 		#region Properties
 
 		/// <summary>
 		///     1a
 		/// </summary>
-		public double XA1 { get; set; }
+		public double XA1 { get; internal set; }
 
 		/// <summary>
 		///     1б
 		/// </summary>
-		public double XB1 { get; set; }
+		public double XB1 { get; internal set; }
 
 		/// <summary>
 		///     1г
 		/// </summary>
-		public double XG1 { get; set; }
+		public double XG1 { get; internal set; }
 
 		/// <summary>
 		///     1в
 		/// </summary>
-		public double XV1 { get; set; }
+		public double XV1 { get; internal set; }
 
-		public double X2 { get; set; }
-		public double X3 { get; set; }
-		public double X4 { get; set; }
-		public double X5 { get; set; }
-		public double X6 { get; set; }
-		public double X7 { get; set; }
-		public double X8 { get; set; }
-		public double X9 { get; set; }
-		public double X10 { get; set; }
-		public double X11 { get; set; }
-		public double X12 { get; set; }
-		public double X13 { get; set; }
-		public double X14 { get; set; }
+		public double X2 { get; internal set; }
+		public double X3 { get; internal set; }
+		public double X4 { get; internal set; }
+		public double X5 { get; internal set; }
+		public double X6 { get; internal set; }
+		public double X7 { get; internal set; }
+		public double X8 { get; internal set; }
+		public double X9 { get; internal set; }
+		public double X10 { get; internal set; }
+		public double X11 { get; internal set; }
+		public double X12 { get; internal set; }
+		public double X13 { get; internal set; }
+		public double X14 { get; internal set; }
 
 		#endregion
 
