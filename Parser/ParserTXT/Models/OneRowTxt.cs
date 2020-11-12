@@ -1,8 +1,11 @@
-﻿namespace Bank.Models
+﻿namespace Parsers.ParserTXT.Models
 {
 
 	public sealed class OneRowTxt
 	{
+
+		#region Constructors
+
 		public OneRowTxt(long x1A, long x1B, long x1V, long x1G, long x2, long x3,
 			long x4, long x5, long x6, long x7, long x8, long x9,
 			long x10, long x11, long x12, long x13, long x14)
@@ -26,25 +29,35 @@
 			X14 = x14;
 		}
 
+		#endregion
+
+		#region Properties
+
+		public long X10 { get; }
+		public long X11 { get; }
+		public long X12 { get; }
+		public long X13 { get; }
+		public long X14 { get; }
+
 		/// <summary>
-		/// 1a
+		///     1a
 		/// </summary>
 		public long X1A { get; }
 
 		/// <summary>
-		/// 1б
+		///     1б
 		/// </summary>
 		public long X1B { get; }
 
 		/// <summary>
-		/// 1в
-		/// </summary>
-		public long X1V { get; }
-
-		/// <summary>
-		/// 1г
+		///     1г
 		/// </summary>
 		public long X1G { get; }
+
+		/// <summary>
+		///     1в
+		/// </summary>
+		public long X1V { get; }
 
 		public long X2 { get; }
 		public long X3 { get; }
@@ -54,12 +67,8 @@
 		public long X7 { get; }
 		public long X8 { get; }
 		public long X9 { get; }
-		public long X10 { get; }
-		public long X11 { get; }
-		public long X12 { get; }
-		public long X13 { get; }
-		public long X14 { get; }
 
+		#endregion
 
 	}
 

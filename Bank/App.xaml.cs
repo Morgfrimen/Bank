@@ -14,6 +14,7 @@ namespace Bank
 	/// </summary>
 	public sealed partial class App : Application
 	{
+
 		#region Constructors
 
 		public App() : this(new MainWindow()) { }
@@ -33,13 +34,13 @@ namespace Bank
 			//Создание ядра для парсера
 			Core.CreateInstance();
 
-            //Создание конфига
-            _ = Config.Config.Config.Con;
+			//Создание конфига
+			_ = Config.Config.Config.Con;
 		}
 
 		#endregion
 
-		#region Method
+		#region Methods
 
 		private void ShowWindow(params Window[] windows)
 		{
