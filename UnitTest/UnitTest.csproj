@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Config\Config.csproj" />
+    <ProjectReference Include="..\DbContex\DbContex.csproj" />
     <ProjectReference Include="..\Logger\Logger.csproj" />
     <ProjectReference Include="..\Parser\Parsers.csproj" />
   </ItemGroup>

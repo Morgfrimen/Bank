@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Config", "Config\Config.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{D5900290-19AB-474D-BC63-8FC395ACC529}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbContex", "DbContex\DbContex.csproj", "{83770AEC-53FF-4933-B200-DE460267BEEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D5900290-19AB-474D-BC63-8FC395ACC529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5900290-19AB-474D-BC63-8FC395ACC529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5900290-19AB-474D-BC63-8FC395ACC529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83770AEC-53FF-4933-B200-DE460267BEEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83770AEC-53FF-4933-B200-DE460267BEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83770AEC-53FF-4933-B200-DE460267BEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83770AEC-53FF-4933-B200-DE460267BEEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
