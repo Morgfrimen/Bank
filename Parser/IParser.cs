@@ -3,9 +3,11 @@
 namespace Parsers
 {
 
-	public interface IParser
+    public interface IParser
 	{
-		OneRowTxt[] GetValue();
+		OneRowTxt[] GetValueInTxtFile();
+
+		OneRowTxt[] GetValueInTxtFileAsync();
 	}
 
 }

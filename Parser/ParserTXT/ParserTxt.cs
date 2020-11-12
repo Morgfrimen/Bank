@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
 
 using Bank.Models;
 
@@ -10,7 +13,7 @@ namespace ParserTxt
 	internal sealed class ParserTxt : IParser
 	{
 		private readonly string _path;
-		private readonly string pattern = $"";
+		
 		public ParserTxt(string path)
 		{
 			_path = path;
@@ -18,10 +21,27 @@ namespace ParserTxt
 
 		#region Implementation of IParser
 
-		public OneRowTxt[] GetValue()
+		public OneRowTxt[] GetValueInTxtFile()
 		{
-			throw new NotImplementedException();
+			string contentTxtFile;
+			using (StreamReader streamReader = new StreamReader(_path,Encoding.Unicode))
+			{
+				contentTxtFile = streamReader.ReadToEnd();
+			}
+
+			string creatingPatternReplase = string.Empty;
+
+			foreach (string banStr in Config.Config.Config.Con.BanString)
+			{
+				creatingPatternReplase += $".*{banStr}.*";
+			}
+
+            contentTxtFile = Regex.Replace(contentTxtFile, creatingPatternReplase, string.Empty);
+
+            return null; //TODO!
 		}
+
+		public OneRowTxt[] GetValueInTxtFileAsync() => throw new NotImplementedException();
 
 		#endregion
 
