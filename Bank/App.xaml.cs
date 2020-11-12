@@ -4,6 +4,8 @@ using System.Windows;
 
 using Bank.View;
 
+using Parsers;
+
 namespace Bank
 {
 
@@ -27,6 +29,12 @@ namespace Bank
 			{
 				Logger.Logger.Error(ex, nameof(App), "Constructor");
 			}
+
+			//Создание ядра для парсера
+			Core.CreateInstance();
+
+            //Создание конфига
+            _ = Config.Config.Config.Con;
 		}
 
 		#endregion

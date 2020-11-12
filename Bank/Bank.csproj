@@ -13,8 +13,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Config\Config.csproj" />
 		<ProjectReference Include="..\Logger\Logger.csproj" />
-		<ProjectReference Include="..\ParserTxt\ParserTxt.csproj" />
+		<ProjectReference Include="..\Parser\Parsers.csproj" />
 	</ItemGroup>
 
 </Project>

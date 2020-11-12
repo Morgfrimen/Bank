@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Text.Json;
 
-namespace Bank.Config
+namespace Config.Config
 {
 
 	/// <summary>
