@@ -10,18 +10,18 @@ namespace DbContex.Models
 		#region Properties
 
 		[Column("1a")]
-		public double A1 { get; set; }
+		public string A1 { get; set; } = "string.Empty";
 
 		[Column("1б")]
-		public double B1 { get; set; }
+		public string B1 { get; set; } = "string.Empty";
 
 		[Column("1г")]
-		public double G1 { get; set; }
+		public string G1 { get; set; } = "string.Empty";
 
 		public int Id { get; set; }
 
 		[Column("1в")]
-		public double V1 { get; set; }
+		public string V1 { get; set; } = "string.Empty";
 
 		public double X10 { get; set; }
 		public double X11 { get; set; }

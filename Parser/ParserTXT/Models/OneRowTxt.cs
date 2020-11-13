@@ -6,7 +6,7 @@
 
 		#region Constructors
 
-		public OneRowTxt(double xa1, double xb1, double xv1, double xg1, double x2, double x3,
+		public OneRowTxt(string xa1, string xb1, string xv1, string xg1, double x2, double x3,
 			double x4, double x5, double x6, double x7, double x8, double x9,
 			double x10, double x11, double x12, double x13, double x14)
 		{
@@ -53,22 +53,22 @@
 		/// <summary>
 		///     1a
 		/// </summary>
-		public double XA1 { get; internal set; }
+		public string XA1 { get; internal set; }
 
 		/// <summary>
 		///     1б
 		/// </summary>
-		public double XB1 { get; internal set; }
+		public string XB1 { get; internal set; }
 
 		/// <summary>
 		///     1г
 		/// </summary>
-		public double XG1 { get; internal set; }
+		public string XG1 { get; internal set; }
 
 		/// <summary>
 		///     1в
 		/// </summary>
-		public double XV1 { get; internal set; }
+		public string XV1 { get; internal set; }
 
 		#endregion
 

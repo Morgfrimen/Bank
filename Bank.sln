@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbContex", "DbContex\DbContex.csproj", "{83770AEC-53FF-4933-B200-DE460267BEEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convector", "Convector\Convector.csproj", "{0C1AA7A9-165B-483C-B81B-63E2529D7D54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Convector", "Convector\Convector.csproj", "{0C1AA7A9-165B-483C-B81B-63E2529D7D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InloaderXmlXmls", "InloaderXmlXmls\InloaderXmlXmls.csproj", "{848FDCC0-F75A-45D3-AA53-9B5A1D9FCEE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{0C1AA7A9-165B-483C-B81B-63E2529D7D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C1AA7A9-165B-483C-B81B-63E2529D7D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1AA7A9-165B-483C-B81B-63E2529D7D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{848FDCC0-F75A-45D3-AA53-9B5A1D9FCEE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{848FDCC0-F75A-45D3-AA53-9B5A1D9FCEE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{848FDCC0-F75A-45D3-AA53-9B5A1D9FCEE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{848FDCC0-F75A-45D3-AA53-9B5A1D9FCEE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

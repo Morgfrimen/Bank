@@ -19,9 +19,9 @@ namespace UnitTest
 			using (DbContextApp db = DbContextApp.GetDbContextApp)
 			{
 				TableFirst tableFirst1 = new TableFirst
-					{A1 = 6000};
+					{A1 = 6000.ToString()};
 				TableFirst tableFirst2 = new TableFirst
-					{A1 = 99999};
+					{A1 = 99999.ToString()};
 
 				db.TableFirsts.AddRange(tableFirst1, tableFirst2);
 				db.SaveChanges();

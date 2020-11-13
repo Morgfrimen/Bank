@@ -44,7 +44,7 @@ namespace ParserTxt
 				else
 					patternReplace += $@".*\{banStr}.*{Environment.NewLine}|";
 
-			contentTxtFile = Regex.Replace(contentTxtFile, patternReplace, string.Empty);
+			contentTxtFile = Regex.Replace(contentTxtFile, patternReplace, string.Empty, RegexOptions.Compiled);
 			string[] contentArray = contentTxtFile.Split(Environment.NewLine);
 			string patternValue = string.Empty;
 
@@ -62,10 +62,10 @@ namespace ParserTxt
 					foreach (OneRowTxt orOneRowTxt in orOneRowTxts)
 						orOneRowTxts[index] = new OneRowTxt
 						{
-							XA1 = double.TryParse(match.Groups[1].Value,out double val1) ? val1 : default,
-							XB1 = double.TryParse(match.Groups[2].Value, out double val2) ? val2 : default,
-							XV1 = double.TryParse(match.Groups[3].Value, out double val3) ? val3 : default,
-							XG1 = double.TryParse(match.Groups[4].Value, out double val4) ? val4 : default,
+							XA1 = match.Groups[1].Value,
+							XB1 = match.Groups[2].Value,
+							XV1 = match.Groups[3].Value,
+							XG1 = match.Groups[4].Value,
 							X2 = double.TryParse(match.Groups[5].Value, out double val5) ? val5 : default,
 							X3 = double.TryParse(match.Groups[6].Value, out double val6) ? val6 : default,
 							X4 = double.TryParse(match.Groups[7].Value, out double val7) ? val7 : default,

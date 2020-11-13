@@ -12,7 +12,8 @@ namespace DbContex
 
 		static DbContextApp() => GetDbContextApp = new DbContextApp();
 
-		private DbContextApp() => Database.EnsureCreated();
+		//Не использовать в повседневной жизни - нужен только для миграции
+		public DbContextApp() => Database.EnsureCreated();
 
 		#endregion
 
