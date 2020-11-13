@@ -2,9 +2,13 @@
 using System.Linq;
 using System.Text;
 
+using DbContex;
+
 using NUnit.Framework;
 
 using Parsers;
+
+using Convert = Convector.Convert;
 
 namespace UnitTest
 {
@@ -12,24 +16,24 @@ namespace UnitTest
 	[TestFixture]
 	public class UnitTest_Convert
 	{
-		public UnitTest_Convert()
-		{
-			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-		}
+		public UnitTest_Convert() => Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 		[Test]
 		public void TestConvert()
 		{
-			Convector.Convert.ParserTxtToDbContext(Core.CreateInstance().ParseTxt(UnitTest_ParserTxt.Path));
-			DbContex.DbContextApp.GetDbContextApp.TableFirsts.ToList().ForEach(
-				item =>
-				{
-					Console.WriteLine(item.A1);
-				});
-			Assert.AreEqual(DbContex.DbContextApp.GetDbContextApp.TableFirsts.Count(),161);
+			Convert.ParserTxtToDbContext(Core.CreateInstance().ParseTxt(UnitTest_ParserTxt.Path));
+			DbContextApp.GetDbContextApp.TableFirsts.ToList()
+				.ForEach
+				(
+					item =>
+					{
+						Console.WriteLine(item.A1);
+					}
+				);
+			Assert.AreEqual(DbContextApp.GetDbContextApp.TableFirsts.Count(), 161);
 
-			DbContex.DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContex.DbContextApp.GetDbContextApp.TableFirsts);
-			DbContex.DbContextApp.GetDbContextApp.SaveChanges();
+			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
+			DbContextApp.GetDbContextApp.SaveChanges();
 		}
 	}
 

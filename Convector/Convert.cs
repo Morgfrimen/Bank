@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 
 using DbContex;
 using DbContex.Models;
@@ -42,15 +42,16 @@ namespace Convector
 					X14 = modelsParser[index].X14
 				};
 			app.TableFirsts.AddRange(tableFirsts);
-            try
-            {
-                await app.SaveChangesAsync();
-            }
-            catch (System.Exception exception)
-            {
-				Logger.Logger.Error(exception,nameof(Convert),nameof(ParserTxtToDbContext));
-	            app.SaveChanges();
-            }
+
+			try
+			{
+				await app.SaveChangesAsync();
+			}
+			catch (Exception exception)
+			{
+				Logger.Logger.Error(exception, nameof(Convert), nameof(ParserTxtToDbContext));
+				app.SaveChanges();
+			}
 		}
 
 		#endregion

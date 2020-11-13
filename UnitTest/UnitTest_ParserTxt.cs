@@ -1,10 +1,9 @@
-using System;
-using System.IO;
 using System.Text;
 
 using NUnit.Framework;
 
 using Parsers;
+using Parsers.ParserTXT.Models;
 
 namespace UnitTest
 {
@@ -25,9 +24,9 @@ namespace UnitTest
 		[Order(0)]
 		public void TestMethod_GetString()
 		{
-			var newStr = Core.CreateInstance().ParseTxt(Path);
-			var result = newStr.GetValueInTxtFile();
-			Assert.AreEqual(result.Length,161);
+			IParser newStr = Core.CreateInstance().ParseTxt(Path);
+			OneRowTxt[] result = newStr.GetValueInTxtFile();
+			Assert.AreEqual(result.Length, 161);
 		}
 	}
 

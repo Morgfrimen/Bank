@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -60,28 +57,39 @@ namespace ParserTxt
 				string s = contentArray[index];
 				Match match = Regex.Match(s, patternValue);
 
-				foreach (OneRowTxt orOneRowTxt in orOneRowTxts)
+				try
 				{
-					List<PropertyInfo> one = new OneRowTxt().GetType()
-						.GetProperties()
-						.ToList();
-					orOneRowTxts[index] = new OneRowTxt();
-					int count = 0;
-					one.ForEach
-					(
-						item =>
+					foreach (OneRowTxt orOneRowTxt in orOneRowTxts)
+						orOneRowTxts[index] = new OneRowTxt
 						{
-							count++;
-							if (double.TryParse(match.Groups[count].Value, out double value))
-								item.SetValue(orOneRowTxts[index], value);
-							else
-								item.SetValue(orOneRowTxts[index], default(double));
-						}
-					);
+							XA1 = double.TryParse(match.Groups[1].Value,out double val1) ? val1 : default,
+							XB1 = double.TryParse(match.Groups[2].Value, out double val2) ? val2 : default,
+							XV1 = double.TryParse(match.Groups[3].Value, out double val3) ? val3 : default,
+							XG1 = double.TryParse(match.Groups[4].Value, out double val4) ? val4 : default,
+							X2 = double.TryParse(match.Groups[5].Value, out double val5) ? val5 : default,
+							X3 = double.TryParse(match.Groups[6].Value, out double val6) ? val6 : default,
+							X4 = double.TryParse(match.Groups[7].Value, out double val7) ? val7 : default,
+							X5 = double.TryParse(match.Groups[8].Value, out double val8) ? val8 : default,
+							X6 = double.TryParse(match.Groups[9].Value, out double val9) ? val9 : default,
+							X7 = double.TryParse(match.Groups[10].Value, out double val10) ? val10 : default,
+							X8 = double.TryParse(match.Groups[11].Value, out double val11) ? val11 : default,
+							X9 = double.TryParse(match.Groups[12].Value, out double val12) ? val12 : default,
+							X10 = double.TryParse(match.Groups[13].Value, out double val13) ? val13 : default,
+							X11 = double.TryParse(match.Groups[14].Value, out double val14) ? val14 : default,
+							X12 = double.TryParse(match.Groups[15].Value, out double val15) ? val15 : default,
+							X13 = double.TryParse(match.Groups[16].Value, out double val16) ? val16 : default,
+							X14 = double.TryParse(match.Groups[17].Value, out double val17) ? val17 : default
+						};
+				}
+				catch (Exception exception)
+				{
+					Logger.Logger.Error(exception, nameof(ParserTxt), "Цикл при присвоении значений из Regex");
+
+					return null;
 				}
 			}
 
-			return orOneRowTxts; 
+			return orOneRowTxts;
 		}
 
 		public OneRowTxt[] GetValueInTxtFileAsync() => throw new NotImplementedException();

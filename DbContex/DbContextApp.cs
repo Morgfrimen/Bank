@@ -1,30 +1,35 @@
-﻿using System;
-
-using DbContex.Models;
+﻿using DbContex.Models;
 
 using Microsoft.EntityFrameworkCore;
 
 namespace DbContex
 {
-    public sealed class DbContextApp : DbContext
-    {
+
+	public sealed class DbContextApp : DbContext
+	{
+
+		#region Constructors
+
+		static DbContextApp() => GetDbContextApp = new DbContextApp();
+
+		private DbContextApp() => Database.EnsureCreated();
+
+		#endregion
+
+		#region Properties
+
 		public static DbContextApp GetDbContextApp { get; }
+		public DbSet<TableFirst> TableFirsts { get; set; }
 
-		static DbContextApp()
-		{
-			GetDbContextApp = new DbContextApp();
-		}
+		#endregion
 
+		#region Methods
 
-	    private DbContextApp()
-	    {
-		    Database.EnsureCreated();
-	    }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql
+			("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=123123");
 
-	    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-	    {
-		    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=123123");
-	    }
-        public DbSet<TableFirst> TableFirsts { get; set; }
-    }
+		#endregion
+
+	}
+
 }
