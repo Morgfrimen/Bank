@@ -14,14 +14,14 @@ namespace UnitTest
 {
 
 	[TestFixture]
-	public class UnitTest_Convert
+	public class UnitTestConvert
 	{
-		public UnitTest_Convert() => Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+		public UnitTestConvert() => Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 		[Test]
 		public void TestConvert()
 		{
-			Convert.ParserTxtToDbContext(Core.CreateInstance().ParseTxt(UnitTest_ParserTxt.Path));
+			Convert.ParserTxtToDbContext(CoreParser.CreateInstance().ParseTxt(UnitTestParserTxt.Path));
 			DbContextApp.GetDbContextApp.TableFirsts.ToList()
 				.ForEach
 				(

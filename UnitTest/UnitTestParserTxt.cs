@@ -9,12 +9,12 @@ namespace UnitTest
 {
 
 	[TestFixture]
-	public class UnitTest_ParserTxt
+	public class UnitTestParserTxt
 	{
-		public UnitTest_ParserTxt()
+		public UnitTestParserTxt()
 		{
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-			Core.CreateInstance();
+			CoreParser.CreateInstance();
 		}
 
 		internal static string Path { get; set; } = @"..\..\..\..\Задание\Пример загружаемого файла 1.txt";
@@ -24,7 +24,7 @@ namespace UnitTest
 		[Order(0)]
 		public void TestMethod_GetString()
 		{
-			IParser newStr = Core.CreateInstance().ParseTxt(Path);
+			IParser newStr = CoreParser.CreateInstance().ParseTxt(Path);
 			OneRowTxt[] result = newStr.GetValueInTxtFile();
 			Assert.AreEqual(result.Length, 161);
 		}

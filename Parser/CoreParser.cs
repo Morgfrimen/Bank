@@ -1,22 +1,22 @@
 ﻿namespace Parsers
 {
 
-	public sealed class Core
+	public sealed class CoreParser
 	{
 
 		#region Static Fields and Constants
 
-		private static Core _core;
+		private static CoreParser _coreParser;
 
 		#endregion
 
 		#region Methods
 
-		public static Core CreateInstance()
+		public static CoreParser CreateInstance()
 		{
-			_core ??= new Core();
+			_coreParser ??= new CoreParser();
 
-			return _core;
+			return _coreParser;
 		}
 
 		public IParser ParseTxt(string path) => new ParserTxt.ParserTxt(path);

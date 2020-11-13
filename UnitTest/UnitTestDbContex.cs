@@ -11,7 +11,7 @@ namespace UnitTest
 {
 
 	[TestFixture]
-	public sealed class UnitTest_DbContex
+	public sealed class UnitTestDbContex
 	{
 		[Test]
 		public void TestDbContex()

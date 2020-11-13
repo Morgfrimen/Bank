@@ -35,7 +35,7 @@ namespace Bank
 			}
 
 			//Создание ядра для парсера
-			Core.CreateInstance();
+			CoreParser.CreateInstance();
 
 			//Создание конфига
 			_ = Config.Config.Config.Con;
