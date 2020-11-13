@@ -8,7 +8,15 @@ namespace DbContex
 {
     public sealed class DbContextApp : DbContext
     {
-	    public DbContextApp()
+		public static DbContextApp GetDbContextApp { get; }
+
+		static DbContextApp()
+		{
+			GetDbContextApp = new DbContextApp();
+		}
+
+
+	    private DbContextApp()
 	    {
 		    Database.EnsureCreated();
 	    }

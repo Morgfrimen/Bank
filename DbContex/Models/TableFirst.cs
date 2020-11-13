@@ -14,7 +14,7 @@ namespace DbContex.Models
 		public double B1 { get; set; }
 
 		[Column("1в")]
-		public double C1 { get; set; }
+		public double V1 { get; set; }
 
 		[Column("1г")]
 		public double G1 { get; set; }

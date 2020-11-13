@@ -47,14 +47,14 @@
 		public double XB1 { get; internal set; }
 
 		/// <summary>
-		///     1г
-		/// </summary>
-		public double XG1 { get; internal set; }
-
-		/// <summary>
 		///     1в
 		/// </summary>
 		public double XV1 { get; internal set; }
+
+		/// <summary>
+		///     1г
+		/// </summary>
+		public double XG1 { get; internal set; }
 
 		public double X2 { get; internal set; }
 		public double X3 { get; internal set; }

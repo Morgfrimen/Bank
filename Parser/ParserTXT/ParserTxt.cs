@@ -81,7 +81,7 @@ namespace ParserTxt
 				}
 			}
 
-			return orOneRowTxts; //TODO!
+			return orOneRowTxts; 
 		}
 
 		public OneRowTxt[] GetValueInTxtFileAsync() => throw new NotImplementedException();

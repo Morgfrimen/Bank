@@ -14,7 +14,7 @@ namespace UnitTest
 		[Test]
 		public void TestDbContex()
 		{
-			using (DbContextApp db = new DbContextApp())
+			using (DbContextApp db = DbContextApp.GetDbContextApp)
 			{
 				TableFirst tableFirst1 = new TableFirst(){A1 = 6000};
 				TableFirst tableFirst2 = new TableFirst(){A1 = 99999};

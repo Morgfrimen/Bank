@@ -18,7 +18,7 @@ namespace UnitTest
 			Core.CreateInstance();
 		}
 
-		private string Path { get; set; } = @"..\..\..\..\Задание\Пример загружаемого файла 1.txt";
+		internal static string Path { get; set; } = @"..\..\..\..\Задание\Пример загружаемого файла 1.txt";
 
 		//так себе тест, он нужен был для дебага парсера
 		[Test]
