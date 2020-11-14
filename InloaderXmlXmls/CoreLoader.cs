@@ -1,4 +1,7 @@
-﻿using InloaderXmlXmls.Xml;
+﻿using System;
+
+using InloaderXmlXmls.Xlsx;
+using InloaderXmlXmls.Xml;
 
 namespace InloaderXmlXmls
 {
@@ -23,9 +26,25 @@ namespace InloaderXmlXmls
 
 		#endregion
 
-		public ILoader GetLoader(string path)
+		public ILoader GetLoader(string path, TypeLoader typeLoader)
 		{
-			return new LoaderXml(path);
+            try
+            {
+                switch (typeLoader)
+                {
+                    case TypeLoader.Xml:
+                        return new LoaderXml(path);
+                    case TypeLoader.Xlsx:
+                        return new LoaderXlsx(path);
+                    default:
+                        throw new Exception("Ошибка с TypeLoader");
+                }
+            }
+            catch (Exception exception)
+            {
+                Logger.Logger.Error(exception,nameof(CoreLoader),nameof(GetLoader));
+                throw;
+            }
 		}
 
 	}
