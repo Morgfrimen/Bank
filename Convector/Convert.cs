@@ -23,6 +23,7 @@ namespace Convector
 			for (int index = 0; index < tableFirsts.Length; index++)
 				tableFirsts[index] = new TableFirst
 				{
+					Id = index+1,
 					A1 = modelsParser[index].XA1,
 					B1 = modelsParser[index].XB1,
 					V1 = modelsParser[index].XV1,
