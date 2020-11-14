@@ -16,12 +16,6 @@ namespace InloaderXmlXmls.Xml.Model
 		[XmlAttribute("КОСГУ")]
 		public string Second { get; set; }
 
-		[XmlAttribute("_x8")]
-		public double X8 { get; set; }
-
-		[XmlAttribute("_x9")]
-		public double X9 { get; set; }
-
 		[XmlAttribute("_x10")]
 		public double X10 { get; set; }
 
@@ -54,6 +48,12 @@ namespace InloaderXmlXmls.Xml.Model
 
 		[XmlAttribute("_x7")]
 		public double X7 { get; set; }
+
+		[XmlAttribute("_x8")]
+		public double X8 { get; set; }
+
+		[XmlAttribute("_x9")]
+		public double X9 { get; set; }
 
 		#endregion
 

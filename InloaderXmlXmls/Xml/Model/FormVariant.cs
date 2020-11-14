@@ -1,19 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace InloaderXmlXmls.Xml.Model
 {
-    [Serializable]
+
+	[Serializable]
 	public class FormVariant
 	{
-		[XmlAttribute(nameof(Number))]
-		public uint Number { get; set; }
+
+		#region Properties
 
 		[XmlAttribute(nameof(NsiVariantCode))]
 		public string NsiVariantCode { get; set; }
 
+		[XmlAttribute(nameof(Number))]
+		public uint Number { get; set; }
+
 		public Table Table { get; set; }
+
+		#endregion
+
 	}
 
 }

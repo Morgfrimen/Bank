@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Text;
 
+using DbContex;
+
 using InloaderXmlXmls;
 
 using NUnit.Framework;
 
 using Parsers;
+
+using Convert = Convector.Convert;
 
 namespace UnitTest
 {
@@ -18,28 +22,28 @@ namespace UnitTest
 		[Test]
 		public void LoadXml()
 		{
-			var parsetTxt = CoreParser.CreateInstance().ParseTxt(UnitTestParserTxt.Path);
-			Convector.Convert.ParserTxtToDbContext(parsetTxt);
+			IParser parsetTxt = CoreParser.CreateInstance().ParseTxt(UnitTestParserTxt.Path);
+			Convert.ParserTxtToDbContext(parsetTxt);
 			string path = $@"{Environment.CurrentDirectory}\{nameof(LoadXml)}.xml";
-			ILoader loader = CoreLoader.CreateInstance().GetLoader(path,TypeLoader.Xml);
+			ILoader loader = CoreLoader.CreateInstance().GetLoader(path, TypeLoader.Xml);
 			loader.LoadXmlFile();
-			DbContex.DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContex.DbContextApp.GetDbContextApp.TableFirsts);
-			DbContex.DbContextApp.GetDbContextApp.SaveChanges();
+			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
+			DbContextApp.GetDbContextApp.SaveChanges();
 		}
 
 		[Test]
 		public void LoadXlsx()
 		{
-			DbContex.DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContex.DbContextApp.GetDbContextApp.TableFirsts);
-			DbContex.DbContextApp.GetDbContextApp.SaveChanges();
+			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
+			DbContextApp.GetDbContextApp.SaveChanges();
 
-			var parsetTxt = CoreParser.CreateInstance().ParseTxt(UnitTestParserTxt.Path);
-			Convector.Convert.ParserTxtToDbContext(parsetTxt);
+			IParser parsetTxt = CoreParser.CreateInstance().ParseTxt(UnitTestParserTxt.Path);
+			Convert.ParserTxtToDbContext(parsetTxt);
 			string path = $@"{Environment.CurrentDirectory}\{nameof(LoadXlsx)}.Xlsx";
 			ILoader loader = CoreLoader.CreateInstance().GetLoader(path, TypeLoader.Xlsx);
 			loader.LoadXmlFile();
-			DbContex.DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContex.DbContextApp.GetDbContextApp.TableFirsts);
-			DbContex.DbContextApp.GetDbContextApp.SaveChanges();
+			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
+			DbContextApp.GetDbContextApp.SaveChanges();
 		}
 	}
 

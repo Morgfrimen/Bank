@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 
+using DbContex;
 using DbContex.Models;
 
 using InloaderXmlXmls.Xml.Model;
@@ -42,14 +43,13 @@ namespace InloaderXmlXmls.Xml
 			rootXml.Report.FormVariant.Table = new Table();
 			rootXml.Report.FormVariant.Table.Code = "Строка";
 
-			Data[] datas = new Data[DbContex.DbContextApp.GetDbContextApp.TableFirsts.Count() + 1];
-			var TableList = DbContex.DbContextApp.GetDbContextApp.TableFirsts.ToList();
+			Data[] datas = new Data[DbContextApp.GetDbContextApp.TableFirsts.Count() + 1];
+			List<TableFirst> TableList = DbContextApp.GetDbContextApp.TableFirsts.ToList();
 			for (int indexData = 0; indexData < datas.Length - 1; indexData++)
-			{
-				datas[indexData] = new Data()
+				datas[indexData] = new Data
 				{
-					First = TableList[indexData].V1.ToString(),
-					Second = TableList[indexData].G1.ToString(),
+					First = TableList[indexData].V1,
+					Second = TableList[indexData].G1,
 					X2 = TableList[indexData].X2,
 					X3 = TableList[indexData].X3,
 					X4 = TableList[indexData].X4,
@@ -64,12 +64,11 @@ namespace InloaderXmlXmls.Xml
 					X13 = TableList[indexData].X13,
 					X14 = TableList[indexData].X14
 				};
-			}
-			datas[datas.Length - 1] = new Data()
+			datas[datas.Length - 1] = new Data
 			{
 				First = "88888",
 				Second = "888",
-				X2 = TableList.Sum(item=>item.X2),
+				X2 = TableList.Sum(item => item.X2),
 				X3 = TableList.Sum(item => item.X3),
 				X4 = TableList.Sum(item => item.X4),
 				X5 = TableList.Sum(item => item.X5),
@@ -89,29 +88,31 @@ namespace InloaderXmlXmls.Xml
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(RootXml));
 				string textFromFile = string.Empty;
+
 				using (FileStream fileStream = new FileStream(Path, FileMode.OpenOrCreate))
 				{
-					xmlSerializer.Serialize(fileStream,rootXml);
+					xmlSerializer.Serialize(fileStream, rootXml);
 				}
-			
-				using (StreamReader fileStream = new StreamReader(Path,Encoding.GetEncoding(1251)))
+
+				using (StreamReader fileStream = new StreamReader(Path, Encoding.GetEncoding(1251)))
 				{
 					textFromFile = fileStream.ReadToEnd();
-					
+
 				}
+
 				//Форматирование
-				textFromFile = Regex.Replace(textFromFile, @"_x\d{1,2}=" + "\"0\"",string.Empty,RegexOptions.Compiled);
+				textFromFile = Regex.Replace(textFromFile, @"_x\d{1,2}=" + "\"0\"", string.Empty, RegexOptions.Compiled);
 				textFromFile = Regex.Replace(textFromFile, "\\S+=\"\"", string.Empty, RegexOptions.Compiled);
-                textFromFile = Regex.Replace(textFromFile, @" {2,100}", @"", RegexOptions.Compiled);
-                textFromFile = Regex.Replace(textFromFile, @"((<Report)|(</Report).*\r\n)", new string(' ', 4) + @"$1", RegexOptions.Compiled);
-                textFromFile = Regex.Replace(textFromFile, @"((<FormVariant)|(</FormVariant).*\r\n)", new string(' ', 8) + @"$1", RegexOptions.Compiled);
-                textFromFile = Regex.Replace(textFromFile, @"((<Table)|(</Table).*\r\n)", new string(' ', 12) + @"$1", RegexOptions.Compiled);
-                textFromFile = Regex.Replace(textFromFile, @"((<Data)|(</Data).*\r\n)", new string(' ', 16) + @"$1", RegexOptions.Compiled);
-                using (StreamWriter streamWriter = new StreamWriter(Path,false,Encoding.GetEncoding(1251)))
+				textFromFile = Regex.Replace(textFromFile, @" {2,100}", @"", RegexOptions.Compiled);
+				textFromFile = Regex.Replace(textFromFile, @"((<Report)|(</Report).*\r\n)", new string(' ', 4) + @"$1", RegexOptions.Compiled);
+				textFromFile = Regex.Replace(textFromFile, @"((<FormVariant)|(</FormVariant).*\r\n)", new string(' ', 8) + @"$1", RegexOptions.Compiled);
+				textFromFile = Regex.Replace(textFromFile, @"((<Table)|(</Table).*\r\n)", new string(' ', 12) + @"$1", RegexOptions.Compiled);
+				textFromFile = Regex.Replace(textFromFile, @"((<Data)|(</Data).*\r\n)", new string(' ', 16) + @"$1", RegexOptions.Compiled);
+
+				using (StreamWriter streamWriter = new StreamWriter(Path, false, Encoding.GetEncoding(1251)))
 				{
 					streamWriter.Write(textFromFile);
 				}
-
 
 			}
 			catch (Exception exception)
@@ -135,13 +136,12 @@ namespace InloaderXmlXmls.Xml
 			rootXml.Report.FormVariant.Table.Code = "Строка";
 
 			Data[] datas = new Data[tableFirsts.Count() + 1];
-			
+
 			for (int indexData = 0; indexData < datas.Length - 1; indexData++)
-			{
-				datas[indexData] = new Data()
+				datas[indexData] = new Data
 				{
-					First = tableFirsts[indexData].V1.ToString(),
-					Second = tableFirsts[indexData].G1.ToString(),
+					First = tableFirsts[indexData].V1,
+					Second = tableFirsts[indexData].G1,
 					X2 = tableFirsts[indexData].X2,
 					X3 = tableFirsts[indexData].X3,
 					X4 = tableFirsts[indexData].X4,
@@ -156,8 +156,7 @@ namespace InloaderXmlXmls.Xml
 					X13 = tableFirsts[indexData].X13,
 					X14 = tableFirsts[indexData].X14
 				};
-			}
-			datas[datas.Length - 1] = new Data()
+			datas[datas.Length - 1] = new Data
 			{
 				First = "88888",
 				Second = "888",
@@ -181,6 +180,7 @@ namespace InloaderXmlXmls.Xml
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(RootXml));
 				string textFromFile = string.Empty;
+
 				using (FileStream fileStream = new FileStream(Path, FileMode.OpenOrCreate))
 				{
 					xmlSerializer.Serialize(fileStream, rootXml);
@@ -191,6 +191,7 @@ namespace InloaderXmlXmls.Xml
 					textFromFile = fileStream.ReadToEnd();
 
 				}
+
 				//Форматирование
 				textFromFile = Regex.Replace(textFromFile, @"_x\d{1,2}=" + "\"0\"", string.Empty, RegexOptions.Compiled);
 				textFromFile = Regex.Replace(textFromFile, "\\S+=\"\"", string.Empty, RegexOptions.Compiled);
@@ -199,11 +200,11 @@ namespace InloaderXmlXmls.Xml
 				textFromFile = Regex.Replace(textFromFile, @"((<FormVariant)|(</FormVariant).*\r\n)", new string(' ', 8) + @"$1", RegexOptions.Compiled);
 				textFromFile = Regex.Replace(textFromFile, @"((<Table)|(</Table).*\r\n)", new string(' ', 12) + @"$1", RegexOptions.Compiled);
 				textFromFile = Regex.Replace(textFromFile, @"((<Data)|(</Data).*\r\n)", new string(' ', 16) + @"$1", RegexOptions.Compiled);
+
 				using (StreamWriter streamWriter = new StreamWriter(Path, false, Encoding.GetEncoding(1251)))
 				{
 					streamWriter.Write(textFromFile);
 				}
-
 
 			}
 			catch (Exception exception)
