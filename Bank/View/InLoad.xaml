@@ -1,0 +1,33 @@
+﻿<Window x:Class="Bank.View.InLoad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Параметры выгрузки" Height="300" Width="600">
+    <UniformGrid Rows="3">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="1"
+                     VerticalAlignment="Center"
+
+                     Text="{Binding Path=Path}" />
+            <Button Grid.Column="3" Content="Обзор"
+                    VerticalAlignment="Center" />
+        </Grid>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                Content="Выгрузить XML"
+                Command="{Binding LoadXmlCommand}"
+                CommandParameter="{Binding}" />
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                Content="Выгрузить Xlsx"
+                Command="{Binding LoadXlsxCommand}"
+                CommandParameter="{Binding}" />
+    </UniformGrid>
+</Window>

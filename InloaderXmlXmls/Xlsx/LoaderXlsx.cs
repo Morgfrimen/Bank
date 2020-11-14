@@ -45,7 +45,7 @@ namespace InloaderXmlXmls.Xlsx
 			range.VerticalAlignment = Constants.xlCenter;
 		}
 
-		public void LoadXmlFile()
+		public void LoadFile()
 		{
 			try
 			{
@@ -556,13 +556,13 @@ namespace InloaderXmlXmls.Xlsx
 			}
 			catch (Exception exception)
 			{
-				Logger.Logger.Error(exception, nameof(LoaderXlsx), nameof(LoadXmlFile));
+				Logger.Logger.Error(exception, nameof(LoaderXlsx), nameof(LoadFile));
 
 				throw;
 			}
 		}
 
-		public void LoadXmlFile(IList<TableFirst> tableFirsts)
+		public void LoadFile(IList<TableFirst> tableFirsts)
 		{
 			try
 			{
@@ -1073,7 +1073,7 @@ namespace InloaderXmlXmls.Xlsx
 			}
 			catch (Exception exception)
 			{
-				Logger.Logger.Error(exception, nameof(LoaderXlsx), nameof(LoadXmlFile));
+				Logger.Logger.Error(exception, nameof(LoaderXlsx), nameof(LoadFile));
 
 				throw;
 			}

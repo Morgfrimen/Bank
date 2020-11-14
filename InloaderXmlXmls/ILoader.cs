@@ -10,8 +10,8 @@ namespace InloaderXmlXmls
 
 		#region Methods
 
-		public void LoadXmlFile();
-		public void LoadXmlFile(IList<TableFirst> tableFirsts);
+		public void LoadFile();
+		public void LoadFile(IList<TableFirst> tableFirsts);
 
 		#endregion
 

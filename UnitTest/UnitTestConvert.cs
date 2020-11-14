@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 using Parsers;
 
-using Convert = Convector.Convert;
+using Convert = ConvectorDbContex.Convert;
 
 namespace UnitTest
 {

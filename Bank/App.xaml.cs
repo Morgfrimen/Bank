@@ -18,16 +18,18 @@ namespace Bank
 
 		#region Constructors
 
-		public App() : this(new MainWindow()) { }
+		public App() : this(new MainWindow(), new InLoad()) { }
 
-		private App([NotNull] Window window)
+		private App([NotNull] Window window, [NotNull] Window inload)
 		{
+			Inload = inload;
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 			try
 			{
 				Window mainWindow = window ?? throw new ArgumentException(nameof(App));
 				ShowWindow(mainWindow);
+				inload = new InLoad();
 			}
 			catch (Exception ex)
 			{
@@ -40,6 +42,12 @@ namespace Bank
 			//Создание конфига
 			_ = Config.Config.Config.Con;
 		}
+
+		#endregion
+
+		#region Properties
+
+		public Window Inload { get; }
 
 		#endregion
 

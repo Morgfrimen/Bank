@@ -31,7 +31,7 @@ namespace InloaderXmlXmls.Xml
 
 		#region Methods
 
-		public void LoadXmlFile()
+		public void LoadFile()
 		{
 			RootXml rootXml = new RootXml();
 			rootXml.Report = new Report();
@@ -123,7 +123,7 @@ namespace InloaderXmlXmls.Xml
 			}
 		}
 
-		public void LoadXmlFile(IList<TableFirst> tableFirsts)
+		public void LoadFile(IList<TableFirst> tableFirsts)
 		{
 			RootXml rootXml = new RootXml();
 			rootXml.Report = new Report();

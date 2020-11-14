@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 using Parsers;
 
-using Convert = Convector.Convert;
+using Convert = ConvectorDbContex.Convert;
 
 namespace UnitTest
 {
@@ -26,7 +26,7 @@ namespace UnitTest
 			Convert.ParserTxtToDbContext(parsetTxt);
 			string path = $@"{Environment.CurrentDirectory}\{nameof(LoadXml)}.xml";
 			ILoader loader = CoreLoader.CreateInstance().GetLoader(path, TypeLoader.Xml);
-			loader.LoadXmlFile();
+			loader.LoadFile();
 			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
 			DbContextApp.GetDbContextApp.SaveChanges();
 		}
@@ -41,7 +41,7 @@ namespace UnitTest
 			Convert.ParserTxtToDbContext(parsetTxt);
 			string path = $@"{Environment.CurrentDirectory}\{nameof(LoadXlsx)}.Xlsx";
 			ILoader loader = CoreLoader.CreateInstance().GetLoader(path, TypeLoader.Xlsx);
-			loader.LoadXmlFile();
+			loader.LoadFile();
 			DbContextApp.GetDbContextApp.TableFirsts.RemoveRange(DbContextApp.GetDbContextApp.TableFirsts);
 			DbContextApp.GetDbContextApp.SaveChanges();
 		}

@@ -6,7 +6,7 @@ using DbContex.Models;
 using Parsers;
 using Parsers.ParserTXT.Models;
 
-namespace Convector
+namespace ConvectorDbContex
 {
 
 	public static class Convert
@@ -14,7 +14,7 @@ namespace Convector
 
 		#region Methods
 
-		public static async void ParserTxtToDbContext(IParser parser)
+		public static void ParserTxtToDbContext(IParser parser)
 		{
 			DbContextApp app = DbContextApp.GetDbContextApp;
 			OneRowTxt[] modelsParser = parser.GetValueInTxtFile();
@@ -23,7 +23,6 @@ namespace Convector
 			for (int index = 0; index < tableFirsts.Length; index++)
 				tableFirsts[index] = new TableFirst
 				{
-					Id = index+1,
 					A1 = modelsParser[index].XA1,
 					B1 = modelsParser[index].XB1,
 					V1 = modelsParser[index].XV1,
@@ -46,12 +45,13 @@ namespace Convector
 
 			try
 			{
-				await app.SaveChangesAsync();
+				app.SaveChanges();
 			}
 			catch (Exception exception)
 			{
 				Logger.Logger.Error(exception, nameof(Convert), nameof(ParserTxtToDbContext));
-				app.SaveChanges();
+
+				throw;
 			}
 		}
 

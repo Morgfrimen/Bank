@@ -3,7 +3,120 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid />
+        xmlns:vm="clr-namespace:Bank.ViewModels"
+        xmlns:convector="clr-namespace:Bank.Convector"
+        mc:Ignorable="d" Opacity="{Binding }"
+        Title="Сведения о дебиторской и кредиторской задолженности" MinHeight="450" MinWidth="1200">
+    <Window.DataContext>
+        <vm:MainWindowViewModels />
+    </Window.DataContext>
+    <Window.Resources>
+        <convector:BoolToVisible x:Key="ToVisible" />
+        <Style TargetType="{x:Type Control}" x:Key="StyleControl">
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="20,5" />
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="50" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Text="Произошла ошибка, обратитесь к разработчику и пришлите логи"
+                   HorizontalAlignment="Center"
+                   Visibility="{Binding Error,Converter={StaticResource ToVisible}}"
+                   Height="{Binding HeightMessageError}" />
+
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="0.1*" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="1" Text="{Binding Path=Path,TargetNullValue=Путь к файлу }"
+                         Style="{StaticResource StyleControl}" />
+                <Button Grid.Column="2" Content="Обзор" Style="{StaticResource StyleControl}"
+                        Command="{Binding OpenFileDialog}"
+                        CommandParameter="{Binding}" />
+                <Button Content="Экспортировать данные"
+                        Command="{Binding Path=LoadDataTxtFile}"
+                        CommandParameter="{Binding}"
+                        Grid.Column="4"
+
+                        Style="{StaticResource StyleControl}" />
+                <Button Content="Выгрузить данные"
+                        Grid.Column="6"
+                        Command="{Binding Path=InLoadClickCommand}"
+                        CommandParameter="{Binding}"
+                        Style="{StaticResource StyleControl}" />
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False" ItemsSource="{Binding Path=ItemSource}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="1а" Width="Auto" Binding="{Binding A1}" />
+                <DataGridTextColumn Header="1б" Width="Auto" Binding="{Binding B1}" />
+                <DataGridTextColumn Header="1в" Width="Auto" Binding="{Binding V1}" />
+                <DataGridTextColumn Header="1г" Width="Auto" Binding="{Binding G1}" />
+                <DataGridTextColumn Header="X2" Width="Auto" Binding="{Binding X2}" />
+                <DataGridTextColumn Header="X3" Width="Auto" Binding="{Binding X3}" />
+                <DataGridTextColumn Header="X4" Width="Auto" Binding="{Binding X4}" />
+                <DataGridTextColumn Header="X5" Width="Auto" Binding="{Binding X5}" />
+                <DataGridTextColumn Header="X6" Width="Auto" Binding="{Binding X6}" />
+                <DataGridTextColumn Header="X7" Width="Auto" Binding="{Binding X7}" />
+                <DataGridTextColumn Header="X8" Width="Auto" Binding="{Binding X8}" />
+                <DataGridTextColumn Header="X9" Width="Auto" Binding="{Binding X9}" />
+                <DataGridTextColumn Header="X10" Width="Auto" Binding="{Binding X10}" />
+                <DataGridTextColumn Header="X11" Width="Auto" Binding="{Binding X11}" />
+                <DataGridTextColumn Header="X12" Width="Auto" Binding="{Binding X12}" />
+                <DataGridTextColumn Header="X13" Width="Auto" Binding="{Binding X13}" />
+                <DataGridTextColumn Header="X14" Width="Auto" Binding="{Binding X14}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="0,1,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="Загрузить данные из БД"
+                        Command="{Binding Path=LoadDbContex}"
+                        CommandParameter="{Binding}"
+                        Grid.Column="1" Style="{StaticResource StyleControl}" />
+                <Button Content="Очистить БД"
+                        Command="{Binding Path=ClearDbContext}"
+                        CommandParameter="{Binding}"
+                        Grid.Column="3" Style="{StaticResource StyleControl}" />
+                <Button Grid.Column="5" Content="Сохранить"
+                        Command="{Binding Path=SaveDbContext}"
+                        CommandParameter="{Binding}"
+                        Style="{StaticResource StyleControl}" />
+            </Grid>
+        </Border>
+
+    </Grid>
 </Window>
