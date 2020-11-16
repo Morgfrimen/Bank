@@ -42,6 +42,11 @@ namespace Config.Config
 		/// </summary>
 		public int SortRun { get; } = 4;
 
+		/// <summary>
+		/// Строка подключения к БД
+		/// </summary>
+		public string Connection { get; set; } = "Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=123123";
+
 		public static Config Con { get; private set; }
 
 		#endregion
@@ -80,9 +85,21 @@ namespace Config.Config
 
 		}
 
+		public void SaveConfig()
+		{
+			if (File.Exists(_path))
+			{
+				JsonSerializerOptions? setting = new JsonSerializerOptions();
+				using StreamReader stream = new StreamReader(_path, Encoding.Unicode);
+				Con = JsonSerializer.Deserialize<Config>(stream.ReadToEnd());
+			}
+			else
+				throw new FileLoadException("Ошибка конфига");
+		}
+
 		#endregion
 
-		//TODO: xml and xlms
+		
 	}
 
 }

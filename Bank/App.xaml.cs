@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -19,18 +20,16 @@ namespace Bank
 
 		#region Constructors
 
-		public App() : this(new MainWindow(), new InLoad()) { }
+		public App() : this(new MainWindow()) { }
 
-		private App([NotNull] Window window, [NotNull] Window inload)
+		private App([NotNull] Window window)
 		{
-			Inload = inload;
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 			try
 			{
 				Window mainWindow = window ?? throw new ArgumentException(nameof(App));
 				ShowWindow(mainWindow);
-				inload = new InLoad();
 			}
 			catch (Exception ex)
 			{
@@ -48,7 +47,7 @@ namespace Bank
 
 		#region Properties
 
-		public Window Inload { get; }
+	
 
 		#endregion
 
@@ -57,15 +56,12 @@ namespace Bank
 		private void ShowWindow(params Window[] windows)
 		{
 			foreach (Window window in windows)
-			{
-				window.Closed += (sendex, e) =>
-				{
-					Process.GetCurrentProcess().Kill();//Для коректного закрытия приложения после публикации
-				};
-			}
-
-			foreach (Window window in windows)
 				window.Show();
+
+			windows.First().Closed += (sendex, e) =>
+			{
+				Process.GetCurrentProcess().Kill(); //Для коректного закрытия приложения после публикации
+			};
 		}
 
 		#endregion

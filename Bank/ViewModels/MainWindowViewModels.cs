@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 
 using Bank.Command;
+using Bank.View;
 
 using DbContex;
 using DbContex.Models;
@@ -50,8 +51,10 @@ namespace Bank.ViewModels
 
 		#region Constructors
 
+		private InLoad _inLoad;
 		public MainWindowViewModels()
 		{
+			_inLoad = new InLoad();
 			this.ErrorEvent += () =>
 			{
 				Task.Run
@@ -146,15 +149,37 @@ namespace Bank.ViewModels
 			param =>
 			{
 				MainWindowViewModels mainViewModel = param as MainWindowViewModels;
-
+				
 				try
 				{
-					(Application.Current as App).Inload.Show();
-					(Application.Current as App).Inload.Focus();
-					(Application.Current as App).Inload.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
+					if (mainViewModel._inLoad is null)
 					{
-						Path = $@"{Environment.CurrentDirectory}"
-					};
+                        try
+                        {
+                            mainViewModel._inLoad = new InLoad();
+                            mainViewModel._inLoad.Show();
+                            mainViewModel._inLoad.Focus();
+                            mainViewModel._inLoad.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
+                            {
+                                Path = $@"{Environment.CurrentDirectory}"
+                            };
+                        }
+                        catch
+                        {
+	                        mainViewModel._inLoad = default;
+
+                        }
+					}
+					else
+					{
+						mainViewModel._inLoad.Show();
+						mainViewModel._inLoad.Focus();
+						mainViewModel._inLoad.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
+						{
+							Path = $@"{Environment.CurrentDirectory}"
+						};
+					}
+					
 
 				}
 				catch (Exception e)
@@ -207,16 +232,14 @@ namespace Bank.ViewModels
 			{
 				MainWindowViewModels mainViewModels = param as MainWindowViewModels;
 				mainViewModels.NoClick = false;
-				
+
 				try
 				{
 					Task task = Task.Run
 					(
 						() =>
 						{
-							mainViewModels.Pause?.Invoke(true);
 							mainViewModels.ItemSource = DbContextApp.GetDbContextApp.TableFirsts.ToList();
-							mainViewModels.Pause?.Invoke(false);
 						}
 					);
 				}
@@ -226,7 +249,6 @@ namespace Bank.ViewModels
 				}
 
 				mainViewModels.NoClick = true;
-				
 			},
 			param => (param as MainWindowViewModels).NoClick
 		);

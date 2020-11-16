@@ -27,7 +27,7 @@ namespace DbContex
 		#region Methods
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql
-			("Host=localhost;Port=5432;Database=usersdb;Username=postgres;Password=123123");
+			(Config.Config.Config.Con.Connection);
 
 		#endregion
 

@@ -103,7 +103,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0.4*" />
                 </Grid.ColumnDefinitions>
-                <Viewbox Grid.Column="1" >
+                <Viewbox Grid.Column="1">
                     <Button Content="Загрузить данные из БД"
                             Command="{Binding Path=LoadDbContex}"
                             CommandParameter="{Binding}"
