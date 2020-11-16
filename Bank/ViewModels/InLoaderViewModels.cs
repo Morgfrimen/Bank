@@ -8,6 +8,8 @@ using DbContex.Models;
 
 using InloaderXmlXmls;
 
+using Microsoft.Win32;
+
 namespace Bank.ViewModels
 {
 
@@ -18,6 +20,7 @@ namespace Bank.ViewModels
 		#region Fields
 
 		private string _path;
+		private string _filter = "Excel файл (*.xlsx)|*.xlsx|XML файл(*.xml)|*.xml";
 
 		#endregion
 
@@ -34,7 +37,6 @@ namespace Bank.ViewModels
 			param =>
 			{
 				InLoaderViewModels vm = param as InLoaderViewModels;
-
 				try
 				{
 					if (vm.ItemFirsts is null)
@@ -50,12 +52,30 @@ namespace Bank.ViewModels
 			}
 		);
 
+		public ICommand OpenFileDialogCommand { get; }= new RelayCommand(
+			param =>
+			{
+				var vm = (param as InLoaderViewModels);
+				if(vm is null)
+					throw new NullReferenceException("ViewModels не найдена!");
+				OpenFileDialog dialog = new OpenFileDialog();
+				dialog.Filter = vm._filter;
+				bool? result = dialog.ShowDialog();
+
+				// ReSharper disable once PossibleInvalidOperationException
+				if (result.Value)
+				{
+					vm.Path = dialog.FileName;
+
+					return;
+				}
+			});
+
 		public ICommand LoadXmlCommand { get; } = new RelayCommand
 		(
 			param =>
 			{
 				InLoaderViewModels vm = param as InLoaderViewModels;
-
 				try
 				{
 					if (vm.ItemFirsts is null)

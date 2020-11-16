@@ -149,14 +149,12 @@ namespace Bank.ViewModels
 
 				try
 				{
-					Task.Run
-					(
-						() =>
-						{
-							(Application.Current as App).Inload.Show();
-							(Application.Current as App).Inload.DataContext = new InLoaderViewModels(mainViewModel.ItemSource);
-						}
-					);
+					(Application.Current as App).Inload.Show();
+					(Application.Current as App).Inload.Focus();
+					(Application.Current as App).Inload.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
+					{
+						Path = $@"{Environment.CurrentDirectory}"
+					};
 
 				}
 				catch (Exception e)

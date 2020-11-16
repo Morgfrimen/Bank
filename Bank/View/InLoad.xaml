@@ -8,25 +8,28 @@
     <UniformGrid Rows="3">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="0.1*"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="1"
                      VerticalAlignment="Center"
 
                      Text="{Binding Path=Path}" />
             <Button Grid.Column="3" Content="Обзор"
-                    VerticalAlignment="Center" />
+                    VerticalAlignment="Center"
+                    Command="{Binding Path=OpenFileDialogCommand}"
+                    CommandParameter="{Binding}"
+                    />
         </Grid>
         <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                 Content="Выгрузить XML"
                 Command="{Binding LoadXmlCommand}"
                 CommandParameter="{Binding}" />
         <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                Content="Выгрузить Xlsx"
+                Content="Выгрузить XLSX"
                 Command="{Binding LoadXlsxCommand}"
                 CommandParameter="{Binding}" />
     </UniformGrid>
