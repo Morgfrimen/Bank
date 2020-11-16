@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Bank.Command;
@@ -19,8 +22,9 @@ namespace Bank.ViewModels
 
 		#region Fields
 
+		private readonly string _filter = "Excel файл (*.xlsx)|*.xlsx|XML файл(*.xml)|*.xml";
+
 		private string _path;
-		private string _filter = "Excel файл (*.xlsx)|*.xlsx|XML файл(*.xml)|*.xml";
 
 		#endregion
 
@@ -32,18 +36,45 @@ namespace Bank.ViewModels
 
 		#region Properties
 
+		public IList<TableFirst> ItemFirsts { get; }
+
+		private string _message;
+
+		public string Message
+		{
+			get => _message;
+			set { _message = value; OnPropertyChanged(nameof(Message)); }
+		}
+
 		public ICommand LoadXlsxCommand { get; } = new RelayCommand
 		(
 			param =>
 			{
+				
 				InLoaderViewModels vm = param as InLoaderViewModels;
+
+				vm.Message = "Выгрузка началась";
+
+				Match math = Regex.Match(vm.Path, @"\\.*\.xlsx");
+				if (!math.Success)
+					vm.Path += @"\InLoadXlsx.xlsx";
+
 				try
 				{
-					if (vm.ItemFirsts is null)
-						throw new NullReferenceException("vm.ItemFirsts");
+					Task.Run
+					(
+						() =>
+						{
+							if (vm.ItemFirsts is null)
+								throw new NullReferenceException("vm.ItemFirsts");
 
-					ILoader loader = CoreLoader.CreateInstance().GetLoader(vm.Path, TypeLoader.Xlsx);
-					loader.LoadFile(vm.ItemFirsts);
+							ILoader loader = CoreLoader.CreateInstance().GetLoader(vm.Path, TypeLoader.Xlsx);
+							loader.LoadFile(vm.ItemFirsts);
+							vm.Message = "Выгрузка закончилась";
+							vm.MessageEmpty();
+							vm.Path = vm.Path.Replace(@"\InLoadXlsx.xlsx",string.Empty);
+						}
+					);
 				}
 				catch (Exception exception)
 				{
@@ -52,37 +83,46 @@ namespace Bank.ViewModels
 			}
 		);
 
-		public ICommand OpenFileDialogCommand { get; }= new RelayCommand(
-			param =>
-			{
-				var vm = (param as InLoaderViewModels);
-				if(vm is null)
-					throw new NullReferenceException("ViewModels не найдена!");
-				OpenFileDialog dialog = new OpenFileDialog();
-				dialog.Filter = vm._filter;
-				bool? result = dialog.ShowDialog();
 
-				// ReSharper disable once PossibleInvalidOperationException
-				if (result.Value)
+		private void MessageEmpty()
+		{
+			Task.Run
+			(
+				() =>
 				{
-					vm.Path = dialog.FileName;
-
-					return;
+					Thread.Sleep(new TimeSpan(0,0,2));
+					Message = string.Empty;
 				}
-			});
+			);
+		}
+
 
 		public ICommand LoadXmlCommand { get; } = new RelayCommand
 		(
 			param =>
 			{
 				InLoaderViewModels vm = param as InLoaderViewModels;
+				vm.Message = "Выгрузка началась";
+				Match math = Regex.Match(vm.Path, @"\\.*\.xml");
+				if (!math.Success)
+					vm.Path += @"\InLoadXml.xml";
+
 				try
 				{
-					if (vm.ItemFirsts is null)
-						throw new NullReferenceException("vm.ItemFirsts");
+					Task.Run
+					(
+						() =>
+						{
+							if (vm.ItemFirsts is null)
+								throw new NullReferenceException("vm.ItemFirsts");
 
-					ILoader loader = CoreLoader.CreateInstance().GetLoader(vm.Path, TypeLoader.Xml);
-					loader.LoadFile(vm.ItemFirsts);
+							ILoader loader = CoreLoader.CreateInstance().GetLoader(vm.Path, TypeLoader.Xml);
+							loader.LoadFile(vm.ItemFirsts);
+							vm.Message = "Выгрузка закончилась";
+							vm.MessageEmpty();
+							vm.Path = vm.Path.Replace(@"\InLoadXml.xml", string.Empty);
+						}
+					);
 				}
 				catch (Exception exception)
 				{
@@ -91,7 +131,24 @@ namespace Bank.ViewModels
 			}
 		);
 
-		public IList<TableFirst> ItemFirsts { get; }
+		public ICommand OpenFileDialogCommand { get; } = new RelayCommand
+		(
+			param =>
+			{
+				InLoaderViewModels vm = param as InLoaderViewModels;
+
+				if (vm is null)
+					throw new NullReferenceException("ViewModels не найдена!");
+
+				OpenFileDialog dialog = new OpenFileDialog();
+				dialog.Filter = vm._filter;
+				bool? result = dialog.ShowDialog();
+
+				// ReSharper disable once PossibleInvalidOperationException
+				if (result.Value)
+					vm.Path = dialog.FileName;
+			}
+		);
 
 		public string Path
 		{

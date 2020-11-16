@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Параметры выгрузки" Height="300" Width="600">
-    <UniformGrid Rows="3">
+    <UniformGrid Rows="4">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -32,5 +32,7 @@
                 Content="Выгрузить XLSX"
                 Command="{Binding LoadXlsxCommand}"
                 CommandParameter="{Binding}" />
+
+        <TextBlock Text="{Binding Message}"/>
     </UniformGrid>
 </Window>

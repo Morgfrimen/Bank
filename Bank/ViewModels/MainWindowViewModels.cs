@@ -207,14 +207,16 @@ namespace Bank.ViewModels
 			{
 				MainWindowViewModels mainViewModels = param as MainWindowViewModels;
 				mainViewModels.NoClick = false;
-
+				
 				try
 				{
 					Task task = Task.Run
 					(
 						() =>
 						{
+							mainViewModels.Pause?.Invoke(true);
 							mainViewModels.ItemSource = DbContextApp.GetDbContextApp.TableFirsts.ToList();
+							mainViewModels.Pause?.Invoke(false);
 						}
 					);
 				}
@@ -224,6 +226,7 @@ namespace Bank.ViewModels
 				}
 
 				mainViewModels.NoClick = true;
+				
 			},
 			param => (param as MainWindowViewModels).NoClick
 		);
