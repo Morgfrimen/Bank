@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-
-		<IsPackable>false</IsPackable>
+		<DebugType>embedded</DebugType>
+		<PublishSingleFile>false</PublishSingleFile>
 	</PropertyGroup>
 
 	<ItemGroup>

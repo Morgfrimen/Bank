@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Windows;
@@ -55,6 +56,14 @@ namespace Bank
 
 		private void ShowWindow(params Window[] windows)
 		{
+			foreach (Window window in windows)
+			{
+				window.Closed += (sendex, e) =>
+				{
+					Process.GetCurrentProcess().Kill();//Для коректного закрытия приложения после публикации
+				};
+			}
+
 			foreach (Window window in windows)
 				window.Show();
 		}
