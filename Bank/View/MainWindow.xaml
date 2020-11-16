@@ -103,11 +103,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="0.4*" />
                 </Grid.ColumnDefinitions>
-                <Viewbox>
+                <Viewbox Grid.Column="1">
                     <Button Content="Загрузить данные из БД"
-                        Command="{Binding Path=LoadDbContex}"
-                        CommandParameter="{Binding}"
-                        Grid.Column="1" Style="{StaticResource StyleControl}" />
+                            Command="{Binding Path=LoadDbContex}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource StyleControl}" />
                 </Viewbox>
                 <Button Content="Очистить БД"
                         Command="{Binding Path=ClearDbContext}"
