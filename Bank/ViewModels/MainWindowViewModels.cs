@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,6 +56,10 @@ namespace Bank.ViewModels
 		public MainWindowViewModels()
 		{
 			_inLoad = new InLoad();
+			_inLoad.Closing += (sendex, e) =>
+			{
+				
+			};
 			this.ErrorEvent += () =>
 			{
 				Task.Run
@@ -157,7 +162,11 @@ namespace Bank.ViewModels
                         try
                         {
                             mainViewModel._inLoad = new InLoad();
-                            mainViewModel._inLoad.Show();
+                            mainViewModel._inLoad.Closed += (sendex, e) =>
+                            {
+	                            mainViewModel._inLoad = default;
+							};
+							mainViewModel._inLoad.Show();
                             mainViewModel._inLoad.Focus();
                             mainViewModel._inLoad.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
                             {
@@ -167,11 +176,17 @@ namespace Bank.ViewModels
                         catch
                         {
 	                        mainViewModel._inLoad = default;
-
                         }
 					}
 					else
 					{
+						mainViewModel._inLoad.Close();
+						mainViewModel._inLoad = new InLoad();
+						mainViewModel._inLoad.Closing += (sendex, e) =>
+						{
+							mainViewModel._inLoad = default;
+						};
+						mainViewModel._inLoad.Activate();
 						mainViewModel._inLoad.Show();
 						mainViewModel._inLoad.Focus();
 						mainViewModel._inLoad.DataContext = new InLoaderViewModels(mainViewModel.ItemSource)
